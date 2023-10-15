@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name  : djangoapp
+  labels:
+    app: my-django-app
+spec:
+  selector:
+    matchLabels:
+      project  : k8s
+  template:
+    metadata:
+      labels:
+        project: k8s
+    spec:
+      containers:
+        - name: djangoapp
+          image: django_app
+          imagePullPolicy: "IfNotPresent"
+          ports:
+            - containerPort: 80
+              name: djangoapp
+          envFrom:
+            - configMapRef:
+                name: django-config
+
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: k8sservice
+spec:
+  type: NodePort
+  selector:
+    project: k8s
+  ports:
+    - port: 80
+      targetPort: djangoapp
+      nodePort: 30330

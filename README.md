@@ -21,6 +21,32 @@ $ docker-compose run web ./manage.py createsuperuser
 
 Для тонкой настройки Docker Compose используйте переменные окружения. Их названия отличаются от тех, что задаёт docker-образа, сделано это чтобы избежать конфликта имён. Внутри docker-compose.yaml настраиваются сразу несколько образов, у каждого свои переменные окружения, и поэтому их названия могут случайно пересечься. Чтобы не было конфликтов к названиям переменных окружения добавлены префиксы по названию сервиса. Список доступных переменных можно найти внутри файла [`docker-compose.yml`](./docker-compose.yml).
 
+## Как запустить в кластере
+- В файле `.\kubernetes\deployment.yml` указан образ, с которого будут запускаться поды: `image: django_app`.
+Для зодания образа используйте:
+````shell
+cd backend_main_django
+eval $(minikube docker-env)
+docker build -t django_app .
+````
+- Создайте под с Postgres с помощью helm: `helm install django-db oci://registry-1.docker.io/bitnamicharts/postgresql`
+- Создайте [базу данных](https://medium.com/coding-blocks/creating-user-database-and-adding-access-on-postgresql-8bfcd2f4a91e)
+- Создайте в директории kubernetes django-config.yml cо следующим манифестом:
+```yaml
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: django-config
+data:
+  DATABASE_URL: postgres://USER:PASSWORD@HOST:PORT/NAME
+  SECRET_KEY: 123456
+  DEBUG: 'false'
+  ALLOWED_HOSTS: star-burger.test
+```
+- Примените созданный configMap `kubectl apply -f .\kubernetes\django-config.yml`
+- Примените все манифесты из папки kubernetes: `kubectl apply -f .\kubernetes\`
+- [Откройте сайт](https://edu-trusting-bartik.sirius-k8s.dvmn.org/admin/)
+
 ## Переменные окружения
 
 Образ с Django считывает настройки из переменных окружения:
