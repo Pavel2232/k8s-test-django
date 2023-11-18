@@ -73,9 +73,14 @@ data:
 
 Установите себе [Lens](https://k8slens.dev/), чтобы быстро переключаться между проектами, читать их конфигурацию, копировать и тестировать внутри своего k8s namespace.
 
-[Кластер k8s](https://console.cloud.yandex.ru/folders/b1gtcctl0mkamhmvoq79/managed-kubernetes/cluster/cat528346gdueh53ts39/overview),   
- [Как подключиться к k8s в Яндекс Облаке](https://i.imgur.com/5LTp3BR.png)   
- [Lens Resource Map](https://github.com/nevalla/lens-resource-map-extension)
+[Кластер k8s](https://console.cloud.yandex.ru/folders/b1gtcctl0mkamhmvoq79/managed-kubernetes/cluster/cat528346gdueh53ts39/overview),
+
+Как подключиться к K8s в Яндекс Облаке
+
+
+<img src="https://github.com/Pavel2232/k8s-test-django/blob/main/5LTp3BR.png" width="400" height="200">
+
+[Lens Resource Map](https://github.com/nevalla/lens-resource-map-extension)
  
 #### PostgreSQL база данных
 
