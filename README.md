@@ -64,7 +64,7 @@ data:
 #### Домен
 Выделен домен  edu-focused-lamarr.sirius-k8s.dvmn.org  . Запросы обрабатывает Yandex Application Load Balancer.
 
-[Ссылка на домен](https://edu-focused-lamarr.sirius-k8s.dvmn.org/_)
+[Ссылка на домен](https://edu-focused-lamarr.sirius-k8s.dvmn.org/)
 
 #### K8s Namespace
 В k8s создан отдельный namespace **edu-focused-lamarr** . К нему выдан полный доступ: можно создавать конфиги и секреты, запускать поды — делать всё, что потребуется для настройки и запуска веб-сервиса.
