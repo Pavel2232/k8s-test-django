@@ -17,4 +17,3 @@ spec:
                 name: k8sservice
                 port:
                   number: 80
-                

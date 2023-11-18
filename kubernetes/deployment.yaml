@@ -23,8 +23,6 @@ spec:
           envFrom:
             - configMapRef:
                 name: django-config
-
-
 ---
 apiVersion: v1
 kind: Service
