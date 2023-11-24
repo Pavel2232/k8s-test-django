@@ -61,6 +61,31 @@ data:
 
 ## Серверная инфраструктура: edu-focused-lamarr
 
+Установите [Helm](https://helm.sh/)
+
+Добавьте Bitnami
+```
+helm repo add bitnami https://charts.bitnami.com/bitnami
+```
+Установите PostgreSQL:
+```
+helm install my-postgresql bitnami/postgresql --namespace <your_namespace>
+```
+
+Заполните манифест файл django.yaml:
+```yaml
+- nodePort: your_nodePort
+```
+
+Запустите манифесты:
+```
+kubectl apply -f django-deployment.yaml
+```
+```
+kubectl apply -f django-service.yaml
+```
+
+
 #### Домен
 Выделен домен  edu-focused-lamarr.sirius-k8s.dvmn.org  . Запросы обрабатывает Yandex Application Load Balancer.
 

@@ -1,0 +1,180 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: django
+  namespace: edu-focused-lamarr
+  uid: 1d06c7e0-bb8f-47da-86da-fb23df0f6e18
+  resourceVersion: '45263304'
+  generation: 2
+  creationTimestamp: '2023-11-24T07:45:28Z'
+  labels:
+    app: django-app
+    k8slens-edit-resource-version: v1
+  annotations:
+    deployment.kubernetes.io/revision: '2'
+    kubectl.kubernetes.io/last-applied-configuration: >
+      {"apiVersion":"apps/v1","kind":"Deployment","metadata":{"annotations":{},"labels":{"app":"django-app"},"name":"django","namespace":"edu-focused-lamarr"},"spec":{"replicas":1,"selector":{"matchLabels":{"app":"django-app"}},"template":{"metadata":{"labels":{"app":"django-app"}},"spec":{"containers":[{"envFrom":[{"configMapRef":{"name":"djangopab-config"}}],"image":"pavel2232/django-k8s:latets","name":"django-app","ports":[{"containerPort":80,"protocol":"TCP"}]}]}}}}
+  managedFields:
+    - manager: kubectl-client-side-apply
+      operation: Update
+      apiVersion: apps/v1
+      time: '2023-11-24T07:45:28Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            .: {}
+            f:kubectl.kubernetes.io/last-applied-configuration: {}
+          f:labels:
+            .: {}
+            f:app: {}
+        f:spec:
+          f:progressDeadlineSeconds: {}
+          f:replicas: {}
+          f:revisionHistoryLimit: {}
+          f:selector: {}
+          f:strategy:
+            f:rollingUpdate:
+              .: {}
+              f:maxSurge: {}
+              f:maxUnavailable: {}
+            f:type: {}
+          f:template:
+            f:metadata:
+              f:labels:
+                .: {}
+                f:app: {}
+            f:spec:
+              f:containers:
+                k:{"name":"django-app"}:
+                  .: {}
+                  f:image: {}
+                  f:imagePullPolicy: {}
+                  f:name: {}
+                  f:ports:
+                    .: {}
+                    k:{"containerPort":80,"protocol":"TCP"}:
+                      .: {}
+                      f:containerPort: {}
+                      f:protocol: {}
+                  f:resources: {}
+                  f:terminationMessagePath: {}
+                  f:terminationMessagePolicy: {}
+              f:dnsPolicy: {}
+              f:restartPolicy: {}
+              f:schedulerName: {}
+              f:securityContext: {}
+              f:terminationGracePeriodSeconds: {}
+    - manager: node-fetch
+      operation: Update
+      apiVersion: apps/v1
+      time: '2023-11-24T07:48:31Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:labels:
+            f:k8slens-edit-resource-version: {}
+        f:spec:
+          f:template:
+            f:spec:
+              f:containers:
+                k:{"name":"django-app"}:
+                  f:envFrom: {}
+    - manager: kube-controller-manager
+      operation: Update
+      apiVersion: apps/v1
+      time: '2023-11-24T07:48:32Z'
+      fieldsType: FieldsV1
+      fieldsV1:
+        f:metadata:
+          f:annotations:
+            f:deployment.kubernetes.io/revision: {}
+        f:status:
+          f:availableReplicas: {}
+          f:conditions:
+            .: {}
+            k:{"type":"Available"}:
+              .: {}
+              f:lastTransitionTime: {}
+              f:lastUpdateTime: {}
+              f:message: {}
+              f:reason: {}
+              f:status: {}
+              f:type: {}
+            k:{"type":"Progressing"}:
+              .: {}
+              f:lastTransitionTime: {}
+              f:lastUpdateTime: {}
+              f:message: {}
+              f:reason: {}
+              f:status: {}
+              f:type: {}
+          f:observedGeneration: {}
+          f:readyReplicas: {}
+          f:replicas: {}
+          f:updatedReplicas: {}
+      subresource: status
+  selfLink: /apis/apps/v1/namespaces/edu-focused-lamarr/deployments/django
+status:
+  observedGeneration: 2
+  replicas: 1
+  updatedReplicas: 1
+  readyReplicas: 1
+  availableReplicas: 1
+  conditions:
+    - type: Available
+      status: 'True'
+      lastUpdateTime: '2023-11-24T07:45:29Z'
+      lastTransitionTime: '2023-11-24T07:45:29Z'
+      reason: MinimumReplicasAvailable
+      message: Deployment has minimum availability.
+    - type: Progressing
+      status: 'True'
+      lastUpdateTime: '2023-11-24T07:48:32Z'
+      lastTransitionTime: '2023-11-24T07:45:28Z'
+      reason: NewReplicaSetAvailable
+      message: ReplicaSet "django-d85f889d9" has successfully progressed.
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: django-app
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: django-app
+    spec:
+      containers:
+        - name: django-app
+          image: pavel2232/django-k8s:latets
+          ports:
+            - containerPort: 80
+              protocol: TCP
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres
+                  key: url
+            - name: SECRET_KEY
+              valueFrom:
+                  configMapKeyRef:
+                    name: django-secret-key
+                    key: secret-key
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: IfNotPresent
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 25%
+      maxSurge: 25%
+  revisionHistoryLimit: 10
+  progressDeadlineSeconds: 600
