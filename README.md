@@ -60,6 +60,7 @@ data:
 `DATABASE_URL` -- адрес для подключения к базе данных PostgreSQL. Другие СУБД сайт не поддерживает. [Формат записи](https://github.com/jacobian/dj-database-url#url-schema).
 
 ## Серверная инфраструктура: edu-focused-lamarr
+Подключиться к кластеру можно например через [Lens](https://k8slens.dev/)
 
 Установите [Helm](https://helm.sh/)
 
