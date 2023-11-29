@@ -3,68 +3,12 @@ kind: Service
 metadata:
   name: django
   namespace: edu-focused-lamarr
-  uid: 1930b0fb-7cbb-45e8-ad3f-325c612f5f42
-  resourceVersion: '45261756'
-  creationTimestamp: '2023-11-24T07:40:39Z'
-  labels:
-    k8slens-edit-resource-version: v1
-  annotations:
-    kubectl.kubernetes.io/last-applied-configuration: >
-      {"apiVersion":"v1","kind":"Service","metadata":{"annotations":{},"name":"django","namespace":"edu-focused-lamarr"},"spec":{"ports":[{"nodePort":30021,"port":80,"protocol":"TCP","targetPort":80}],"selector":{"app":"djangopab"},"type":"NodePort"}}
-  managedFields:
-    - manager: kubectl-client-side-apply
-      operation: Update
-      apiVersion: v1
-      time: '2023-11-24T07:40:39Z'
-      fieldsType: FieldsV1
-      fieldsV1:
-        f:metadata:
-          f:annotations:
-            .: {}
-            f:kubectl.kubernetes.io/last-applied-configuration: {}
-        f:spec:
-          f:externalTrafficPolicy: {}
-          f:internalTrafficPolicy: {}
-          f:ports:
-            .: {}
-            k:{"port":80,"protocol":"TCP"}:
-              .: {}
-              f:nodePort: {}
-              f:port: {}
-              f:protocol: {}
-              f:targetPort: {}
-          f:sessionAffinity: {}
-          f:type: {}
-    - manager: node-fetch
-      operation: Update
-      apiVersion: v1
-      time: '2023-11-24T07:43:12Z'
-      fieldsType: FieldsV1
-      fieldsV1:
-        f:metadata:
-          f:labels:
-            .: {}
-            f:k8slens-edit-resource-version: {}
-        f:spec:
-          f:selector: {}
-  selfLink: /api/v1/namespaces/edu-focused-lamarr/services/django
-status:
-  loadBalancer: {}
 spec:
+  selector:
+    app: django-app
   ports:
     - protocol: TCP
       port: 80
       targetPort: 80
       nodePort: 30021
-  selector:
-    app: django-app
-  clusterIP: 10.98.254.148
-  clusterIPs:
-    - 10.98.254.148
   type: NodePort
-  sessionAffinity: None
-  externalTrafficPolicy: Cluster
-  ipFamilies:
-    - IPv4
-  ipFamilyPolicy: SingleStack
-  internalTrafficPolicy: Cluster
