@@ -14,19 +14,22 @@
 ```
 helm repo add bitnami https://charts.bitnami.com/bitnami
 ```
-Установите PostgreSQL:
-```
-helm install my-postgresql bitnami/postgresql --namespace <your_namespace>
-```
 
 Заполните манифест файл django.yaml:
 ```yaml
 - nodePort: your_nodePort
 ```
-Заполните манифест файл secrets.yaml:
+Создайте манифест файл secrets.yaml:
 ```yaml
-allowed-hosts: your_allowed-hosts
-secret-key: secret-key
+apiVersion: v1
+kind: Secret
+metadata:
+  name: secret-django-app
+  namespace: edu-focused-lamarr
+type: Opaque
+stringData:
+  allowed-hosts: your_allowed-hosts
+  secret-key: secret-key
 ```
 
 Запустите манифесты:
