@@ -23,7 +23,7 @@ $ docker-compose run web ./manage.py createsuperuser
 
 ## Как запустить в кластере
 - В файле `.\kubernetes\deployment.yml` указан образ, с которого будут запускаться поды: `image: django_app`.
-Для зодания образа используйте:
+Для создания образа используйте:
 ````shell
 cd backend_main_django
 eval $(minikube docker-env)
