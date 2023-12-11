@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: django-migrate
+  labels:
+    app: django-app
+    namespace: edu-focused-lamarr
+spec:
+  template:
+    spec:
+      containers:
+      - name: django-migrate
+        image: pavel2232/django-k8s:latest
+        imagePullPolicy: IfNotPresent
+        command: ["python", "manage.py", "migrate", "--noinput"]
+        env:
+          - name: DATABASE_URL
+            valueFrom:
+              secretKeyRef:
+                name: postgres
+                key: url
+          - name: SECRET_KEY
+            valueFrom:
+              secretKeyRef:
+                name: secret-django-app
+                key: secret-key
+          - name: ALLOWED_HOSTS
+            valueFrom:
+              secretKeyRef:
+                name: secret-django-app
+                key: allowed-hosts
+      restartPolicy: Never

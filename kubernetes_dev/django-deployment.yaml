@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: django-app
-        image: pavel2232/django-k8s:latets
+        image: pavel2232/django-k8s:latest
         ports:
         - containerPort: 80
         env:
@@ -36,3 +36,24 @@ spec:
               secretKeyRef:
                 name: secret-django-app
                 key: allowed-hosts
+      initContainers:
+        - name: migrate
+          image: pavel2232/django-k8s:latest
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: postgres
+                  key: url
+            - name: SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: secret-django-app
+                  key: secret-key
+            - name: ALLOWED_HOSTS
+              valueFrom:
+                secretKeyRef:
+                  name: secret-django-app
+                  key: allowed-hosts
+          command: ["python", "manage.py", "migrate", "--noinput"]
+

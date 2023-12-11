@@ -30,6 +30,9 @@ stringData:
 
 Примените манифесты:
 ```
+kubectl apply -f migrate.yaml
+```
+```
 kubectl apply -f django-deployment.yaml
 ```
 ```
@@ -37,6 +40,12 @@ kubectl apply -f django-service.yaml
 ```
 ```
 kubectl apply -f secrets.yaml
+```
+
+## Как выкатить свежую версию приложения в кластер?
+```shell
+cd backend_main_django
+./entrypoint.sh
 ```
 
 ## [Ссылка на сервер](https://edu-focused-lamarr.sirius-k8s.dvmn.org/)
