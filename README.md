@@ -38,4 +38,4 @@ $ docker-compose run web ./manage.py createsuperuser
 
 ## Как запустить в [Minikube](https://github.com/Pavel2232/k8s-test-django/blob/main/kubernetes_dev_minikube/README_DEV.md)
 
-## Как запустить в [Облаке Sirius](https://github.com/Pavel2232/k8s-test-django/blob/main/kubernetes_prod/README_PROD.md)
+## Как запустить в [Облаке Sirius](https://github.com/Pavel2232/k8s-test-django/blob/main/kubernetes_prod/README.md)
