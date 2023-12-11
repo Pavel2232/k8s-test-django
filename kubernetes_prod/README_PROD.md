@@ -15,10 +15,6 @@
 helm repo add bitnami https://charts.bitnami.com/bitnami
 ```
 
-Заполните манифест файл django.yaml:
-```yaml
-- nodePort: your_nodePort
-```
 Создайте манифест файл secrets.yaml:
 ```yaml
 apiVersion: v1
@@ -32,7 +28,7 @@ stringData:
   secret-key: secret-key
 ```
 
-Запустите манифесты:
+Примените манифесты:
 ```
 kubectl apply -f django-deployment.yaml
 ```
