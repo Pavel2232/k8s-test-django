@@ -36,6 +36,6 @@ $ docker-compose run web ./manage.py createsuperuser
 Для тонкой настройки Docker Compose используйте переменные окружения. Их названия отличаются от тех, что задаёт docker-образа, сделано это чтобы избежать конфликта имён. Внутри docker-compose.yaml настраиваются сразу несколько образов, у каждого свои переменные окружения, и поэтому их названия могут случайно пересечься. Чтобы не было конфликтов к названиям переменных окружения добавлены префиксы по названию сервиса. Список доступных переменных можно найти внутри файла [`docker-compose.yml`](./docker-compose.yml).
 
 
-## Как запустить в [Minikube](https://github.com/Pavel2232/k8s-test-django/blob/main/kubernetes_dev_minikube/README_DEV.md)
+## Как запустить в [Minikube](https://github.com/Pavel2232/k8s-test-django/blob/main/kubernetes_local/README_DEV.md)
 
-## Как запустить в [Облаке Sirius](https://github.com/Pavel2232/k8s-test-django/blob/main/kubernetes_prod/README.md)
+## Как запустить в [Облаке Sirius](https://github.com/Pavel2232/k8s-test-django/blob/main/kubernetes_dev/README.md)
